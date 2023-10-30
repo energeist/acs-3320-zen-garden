@@ -5,11 +5,17 @@
 
 /* basic elements */
 
+* {
+	margin: 0;
+	padding: 0;
+}
+
 html {
+	padding: 10px;
 	position: relative;
 }
 
-html:before {
+html::before {
 	content: ' ';
 	display: block;
   position: absolute;
@@ -17,10 +23,10 @@ html:before {
   top: 0;
   width: 100%;
   height: 100%;
-  opacity: 0.6;
+  opacity: 0.4;
+	z-index: -3;
   background-image: url('cemetery.jpg');
   background-repeat: no-repeat;
-  /* background-position: 50% 0; */
   background-size: cover;
 }
 
@@ -28,7 +34,11 @@ body {
 	position: relative;
 	z-index: 0;
 	font: 100% Lacquer;
-	/* color: orange; */
+}
+
+footer {
+	align-self: flex-end;
+	min-width: 100%;
 }
 
 .page-wrapper {
@@ -42,7 +52,6 @@ body {
 
 h1, h2, h3 {
 	font: 150% Nosifer;
-	/* color: orangered; */
 	padding: 0;
 	margin: 0;
 	margin-block-start: 0;
@@ -70,6 +79,40 @@ header, #zen-summary {
 	flex-wrap: wrap;
 }
 
+/* headstones */
+
+#zen-supporting > [role="article"]::before {
+	content: ' ';
+	display: block;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0.6;
+	background-repeat: no-repeat;
+	background-size: cover;
+	z-index: -1;
+	border-top-left-radius: 95px;
+  border-top-right-radius: 95px;
+}
+
+#zen-supporting > [role="article"]:nth-of-type(1)::before {
+	background-image: url("texture1.jpg");
+}
+
+#zen-supporting > [role="article"]:nth-of-type(2)::before {
+	background-image: url("texture2.jpg");
+}
+
+#zen-supporting > [role="article"]:nth-of-type(3)::before {
+	background-image: url("texture5.jpg");
+}
+
+#zen-supporting > [role="article"]:nth-of-type(4)::before {
+	background-image: url("texture3.jpg");
+}
+
 #zen-supporting > [role="article"] {
 	flex: 1;
 	min-width: 350px;
@@ -78,20 +121,23 @@ header, #zen-summary {
   border-top-right-radius: 100px;
 	border: solid black 5px;
 	padding: 20px;
-	margin: 20px;
+	margin: auto;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+
+#zen-supporting > [role="article"] {
+	position: relative;
 }
 
 aside {
 	grid-area: side;
 }
 
-/* [role="navigation"] {
-	display: flex;
-	flex-direction: column;
-} */
-
 footer {
 	grid-area: footer;
+	text-align: center;
+	margin: auto;
 }
 
 ul {
@@ -100,23 +146,65 @@ ul {
 }
 
 ul, li {
-	list-style: none;
+	list-style: none; 
 }
 
-[role="navigation"] > ul > li {
+/* markers */
+
+[role="navigation"] > ul > *::before {
+	content: ' ';
+	display: block;
+	position: absolute;
+	left: 0;
+	top: 0;
+	width: 100%;
+	height: 100%;
+	opacity: 0.7;
+	background-repeat: no-repeat;
+	background-size: cover;
+	z-index: -1;
+	border-radius: 18px;
+	max-width: 200px;
+	min-width: 100px;
+}
+
+[role="navigation"] > ul > *:nth-last-of-type(n)::before {
+	background-image: url("texture5.jpg");
+}
+
+[role="navigation"] > ul > *:nth-last-of-type(2n)::before {
+	background-image: url("texture4.jpg");
+}
+
+[role="navigation"] > ul > *:nth-last-of-type(3n)::before {
+	background-image: url("texture3.jpg");
+}
+
+[role="navigation"] > ul > *:nth-last-of-type(4n)::before {
+	background-image: url("texture2.jpg");
+}
+
+[role="navigation"] > ul > *:nth-last-of-type(5n)::before {
+	background-image: url("texture1.jpg");
+}
+
+[role="navigation"] > ul > * {
+	position: relative;
 	display: flex;
-	flex-direction: column;
-	/* text-align: right; */
-	margin: 5px;
+	flex-direction: 	/* align-items: flex-start; */column;
+	margin: 20px;
 	border: dashed black 3px;
 	border-radius: 20px;
 	padding: 10px;
+	max-width: 175px;
+	min-width: 100px;
 }
 
-[role="navigation"] > ul > li:nth-child(2n) {
-	align-items: flex-start;
+[role="navigation"] > ul :nth-child(2n) {
+	margin-left: auto;
 }
 
-[role="navigation"] > ul > li:nth-child(2n + 1) {
-	align-items: flex-end;
+[role="navigation"] > ul :nth-child(2n + 1) {
+	margin-right: auto;
 }
+
